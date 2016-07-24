@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.openmrs.module.radiology.hl7.custommodel.v231.segment.ZDSTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.02 sec

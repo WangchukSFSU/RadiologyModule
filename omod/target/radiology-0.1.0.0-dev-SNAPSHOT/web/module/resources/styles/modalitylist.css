@@ -1,0 +1,56 @@
+.modality {
+    border-style: solid;
+    border-color: gainsboro;
+    padding-left: 3%;
+   
+    padding-top: 15px;
+
+}
+
+.list-modality {
+    padding-top: 30px;
+}
+
+#modality-list {
+background-color: gainsboro;
+float: left;
+font-size: 20px;
+padding: 8px;
+
+}
+
+#modality-concept-message {
+    background-color: gainsboro;
+    width: 50%;
+    margin-left: 153px;
+    text-align: center;
+    padding: 8px;
+  
+
+}
+
+label {
+    margin-left: 5px;    
+     display: inline-block;
+     
+   
+}
+
+#modality-refresh {
+
+    float: right;
+   margin-right: 25px;
+}
+
+.modality-list-btn {
+    margin-top: 54px;
+    padding-bottom: 13px;
+}
+
+#select-modality {
+    width: 240px;
+}
+
+#modality-label-list li {
+    list-style-type: none;
+}
