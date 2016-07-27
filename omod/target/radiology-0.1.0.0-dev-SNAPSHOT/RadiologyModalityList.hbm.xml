@@ -9,7 +9,6 @@
 		</id>
 		<discriminator column="id" insert="false" />
                 <property name="modalityId"  column="modalityId" not-null="false"  ></property>
-		<property name="name" type="java.lang.String" column="name" length="255" unique="true" />
 		
 	</class>
 </hibernate-mapping>

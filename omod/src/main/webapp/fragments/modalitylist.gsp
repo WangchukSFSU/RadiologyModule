@@ -350,7 +350,6 @@ jq("#header ul").append(jq("<li>").html('<input type="checkbox"  value="' + conI
         </div>
     </div>
 
-<h2> hello </h2>
 
 
 

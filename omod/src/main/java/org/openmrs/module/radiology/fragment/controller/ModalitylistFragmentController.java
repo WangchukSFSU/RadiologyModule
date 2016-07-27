@@ -75,20 +75,16 @@ public class ModalitylistFragmentController {
 	public void saveModality(FragmentModel model, @RequestParam(value = "modalityList[]") String[] modalityList) {
 		
 		System.out.println("READY TO SAVE LABORDER");
-		RadiologyModalityList labOrder = new RadiologyModalityList();
-		// labOrder.setId(11);
-		labOrder.setModalityId(1111);
-		labOrder.setName("Namweeeyw");
-		
-		if (labOrder != null) {
-			System.out.println("==========HEYEEEEEEE");
-		} else {
-			System.out.println("==========Is NULLLLLLLLLLL");
+		RadiologyModalityList modalityName = new RadiologyModalityList();
+		for (String modlist : modalityList) {
+			int modalityConcept = Integer.parseInt(modlist);
+			modalityName.setModalityId(modalityConcept);
+			Context.getService(RadiologyService.class)
+					.saveModalityList(modalityName);
+			System.out.println("ORDER SAVED");
+			
 		}
 		
-		Context.getService(RadiologyService.class)
-				.saveModalityList(labOrder);
-		System.out.println("ORDER SAVED");
 	}
 	
 	public void saveStudy(@RequestParam(value = "studyList[]") Integer[] studyList) {
