@@ -279,4 +279,29 @@
 			<column name="uuid" value="fe898a34-1ade-11e1-9c71-00248140a5eb" />
 		</insert>
 	</changeSet>
+        <changeSet id="radiology-33" author="cortex">
+		<sql>
+			drop table if exists RadiologyModalityList;
+		</sql>
+	</changeSet>
+        <changeSet author="juanp" id="radiology-34">
+		<preConditions onFail="WARN" onError="WARN">
+			<not>
+				<tableExists tableName="RadiologyModalityList" />
+			</not>
+		</preConditions>
+		<createTable tableName="RadiologyModalityList">
+                    <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+			<column name="modalityId" type="int" />	
+			<column name="name" type="varchar(255)" />
+		</createTable>
+	</changeSet>
+        
+
+   
 </databaseChangeLog>
+
+ 
+       

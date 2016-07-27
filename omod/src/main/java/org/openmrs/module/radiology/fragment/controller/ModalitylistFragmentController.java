@@ -15,6 +15,8 @@ import org.openmrs.ConceptSet;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.radiology.Modality;
+import org.openmrs.module.radiology.RadiologyModalityList;
+import org.openmrs.module.radiology.RadiologyService;
 import org.openmrs.module.radiology.Study;
 
 import org.openmrs.ui.framework.SimpleObject;
@@ -72,34 +74,21 @@ public class ModalitylistFragmentController {
 	
 	public void saveModality(FragmentModel model, @RequestParam(value = "modalityList[]") String[] modalityList) {
 		
-		List<String> saveModalityList = Arrays.asList(modalityList);
-		Study setModality = new Study();
-		// RadiologyModality saveModality = new RadiologyModality();
-		String modalityConstant = "XA";
-		for (String modList : saveModalityList) {
-			if (modList.equals("Computed Radiography")) {
-				modalityConstant = "CR";
-			} else if (modList.equals("Magnetic Resonance")) {
-				modalityConstant = "MR";
-			} else if (modList.equals("Computed Tomography")) {
-				modalityConstant = "CT";
-			} else if (modList.equals("Nuclear Medicine")) {
-				modalityConstant = "NM";
-			} else if (modList.equals("Ultrasound")) {
-				modalityConstant = "US";
-			}
-			
-			// saveModality.setName(modList);
-			setModality.setModality(Modality.valueOf(modalityConstant));
-			// Modality mo = Modality.valueOf(modalityConstant);
-			// System.out.println("List of modList   " + modList);
-			// System.out.println("List of modality   " + mo);
-			
-			// Context.getService(RadiologyModalityService.class)
-			// .saveModality(saveModality);
-			
+		System.out.println("READY TO SAVE LABORDER");
+		RadiologyModalityList labOrder = new RadiologyModalityList();
+		// labOrder.setId(11);
+		labOrder.setModalityId(1111);
+		labOrder.setName("Namweeeyw");
+		
+		if (labOrder != null) {
+			System.out.println("==========HEYEEEEEEE");
+		} else {
+			System.out.println("==========Is NULLLLLLLLLLL");
 		}
 		
+		Context.getService(RadiologyService.class)
+				.saveModalityList(labOrder);
+		System.out.println("ORDER SAVED");
 	}
 	
 	public void saveStudy(@RequestParam(value = "studyList[]") Integer[] studyList) {

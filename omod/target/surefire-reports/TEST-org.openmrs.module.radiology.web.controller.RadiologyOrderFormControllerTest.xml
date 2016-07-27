@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.42" errors="0" skipped="0" tests="18" name="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest">
+<testsuite failures="0" time="0.458" errors="0" skipped="0" tests="18" name="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/youdon/Desktop/Radiology_IVO/openmrs-module-radiology"/>
+    <property name="user.dir" value="/home/youdon/Desktop/LatestWangchukRepo/RadiologyDcm4chee"/>
     <property name="java.runtime.version" value="1.7.0_101-b00"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/endorsed"/>
@@ -60,22 +60,22 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.115" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsNotCompleted"/>
-  <testcase time="0.015" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToStudyPerformedWhenStudyPerformedStatusIsInProgressAndRequestWasIssuedByRadiologyScheduler"/>
-  <testcase time="0.008" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfOrderIsNotARadiologyOrder"/>
-  <testcase time="0.011" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToOrderSavedAndRedirectToRadiologyOrderFormWhenSaveStudyWasSuccessfulAndGivenPatientId"/>
-  <testcase time="0.009" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingRadiologyOrderIfGivenOrderIdMatchesARadiologyOrderAndDicomViewerUrlIfOrderCompleted"/>
-  <testcase time="0.01" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrderAndPrefilledPatient_shouldPopulateModelAndViewWithNewRadiologyOrderPrefilledWithGivenPatient"/>
-  <testcase time="0.017" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postDiscontinueRadiologyOrder_shouldDiscontinueNonDiscontinuedOrderAndRedirectToDiscontinuationOrder"/>
-  <testcase time="0.046" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingOrderIfGivenOrderIdOnlyMatchesAnOrderAndNotARadiologyOrder"/>
-  <testcase time="0.011" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsCompletedButHasAClaimedReport"/>
-  <testcase time="0.016" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsCompletedButHasACompletedReport"/>
-  <testcase time="0.012" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToSavedFailWorklistAndRedirectToRadiologyOrderFormWhenSaveStudyWasNotSuccessfulAndGivenPatientId"/>
-  <testcase time="0.007" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldNotRedirectIfRadiologyOrderIsNotValidAccordingToOrderValidator"/>
-  <testcase time="0.009" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrder_shouldPopulateModelAndViewWithNewRadiologyOrder"/>
-  <testcase time="0.008" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnTrueIfRadiologyOrderIsCompletedAndHasNoClaimedReport"/>
-  <testcase time="0.007" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postDiscontinueRadiologyOrder_shouldNotRedirectIfDiscontinuationFailedInPacs"/>
-  <testcase time="0.016" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingRadiologyOrderIfGivenOrderIdMatchesARadiologyOrderAndNoDicomViewerUrlIfOrderIsNotCompleted"/>
-  <testcase time="0.013" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToOrderSavedAndRedirectToRadiologyOrderFormWhenSaveStudyWasSuccessful"/>
-  <testcase time="0.005" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrderAndPrefilledPatient_shouldPopulateModelAndViewWithNewRadiologyOrderWithoutPrefilledPatientIfGivenPatientIsNull"/>
+  <testcase time="0.135" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsNotCompleted"/>
+  <testcase time="0.036" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToStudyPerformedWhenStudyPerformedStatusIsInProgressAndRequestWasIssuedByRadiologyScheduler"/>
+  <testcase time="0.014" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfOrderIsNotARadiologyOrder"/>
+  <testcase time="0.017" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToOrderSavedAndRedirectToRadiologyOrderFormWhenSaveStudyWasSuccessfulAndGivenPatientId"/>
+  <testcase time="0.038" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingRadiologyOrderIfGivenOrderIdMatchesARadiologyOrderAndDicomViewerUrlIfOrderCompleted"/>
+  <testcase time="0.021" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrderAndPrefilledPatient_shouldPopulateModelAndViewWithNewRadiologyOrderPrefilledWithGivenPatient"/>
+  <testcase time="0.009" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postDiscontinueRadiologyOrder_shouldDiscontinueNonDiscontinuedOrderAndRedirectToDiscontinuationOrder"/>
+  <testcase time="0.03" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingOrderIfGivenOrderIdOnlyMatchesAnOrderAndNotARadiologyOrder"/>
+  <testcase time="0.007" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsCompletedButHasAClaimedReport"/>
+  <testcase time="0.015" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnFalseIfRadiologyOrderIsCompletedButHasACompletedReport"/>
+  <testcase time="0.011" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToSavedFailWorklistAndRedirectToRadiologyOrderFormWhenSaveStudyWasNotSuccessfulAndGivenPatientId"/>
+  <testcase time="0.005" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldNotRedirectIfRadiologyOrderIsNotValidAccordingToOrderValidator"/>
+  <testcase time="0.005" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrder_shouldPopulateModelAndViewWithNewRadiologyOrder"/>
+  <testcase time="0.006" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="radiologyReportNeedsToBeCreated_shouldReturnTrueIfRadiologyOrderIsCompletedAndHasNoClaimedReport"/>
+  <testcase time="0.006" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postDiscontinueRadiologyOrder_shouldNotRedirectIfDiscontinuationFailedInPacs"/>
+  <testcase time="0.02" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithExistingRadiologyOrderByOrderId_shouldPopulateModelAndViewWithExistingRadiologyOrderIfGivenOrderIdMatchesARadiologyOrderAndNoDicomViewerUrlIfOrderIsNotCompleted"/>
+  <testcase time="0.016" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="postSaveRadiologyOrder_shouldSetHttpSessionAttributeOpenmrsMessageToOrderSavedAndRedirectToRadiologyOrderFormWhenSaveStudyWasSuccessful"/>
+  <testcase time="0.004" classname="org.openmrs.module.radiology.web.controller.RadiologyOrderFormControllerTest" name="getRadiologyOrderFormWithNewRadiologyOrderAndPrefilledPatient_shouldPopulateModelAndViewWithNewRadiologyOrderWithoutPrefilledPatientIfGivenPatientIsNull"/>
 </testsuite>

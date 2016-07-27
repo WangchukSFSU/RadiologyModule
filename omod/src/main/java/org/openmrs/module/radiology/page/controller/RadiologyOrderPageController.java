@@ -24,7 +24,6 @@ public class RadiologyOrderPageController {
 			System.out.println("list performned status " + performedStatus.name());
 		}
 		
-
 		model.addAttribute("returnUrl", returnUrl);
 		model.addAttribute("performedStatuses", performedStatuses);
 		

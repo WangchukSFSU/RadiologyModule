@@ -30,11 +30,13 @@ import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction;
 import org.openmrs.module.radiology.DicomUtils;
 import org.openmrs.module.radiology.MwlStatus;
 import org.openmrs.module.radiology.PerformedProcedureStepStatus;
+import org.openmrs.module.radiology.RadiologyModalityList;
 import org.openmrs.module.radiology.RadiologyOrder;
 import org.openmrs.module.radiology.RadiologyProperties;
 import org.openmrs.module.radiology.RadiologyService;
 import org.openmrs.module.radiology.ScheduledProcedureStepStatus;
 import org.openmrs.module.radiology.Study;
+import org.openmrs.module.radiology.db.RadiologyModalityListDAO;
 import org.openmrs.module.radiology.db.RadiologyOrderDAO;
 import org.openmrs.module.radiology.db.RadiologyReportDAO;
 import org.openmrs.module.radiology.db.StudyDAO;
@@ -60,6 +62,17 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	private RadiologyProperties radiologyProperties;
 	
 	private RadiologyReportDAO radiologyReportDAO;
+	
+	private RadiologyModalityListDAO modalitylistdao;
+	
+	public void setModalitylistdao(RadiologyModalityListDAO modalitylistdao) {
+		this.modalitylistdao = modalitylistdao;
+	}
+	
+	@Override
+	public RadiologyModalityList saveModalityList(RadiologyModalityList department) {
+		return modalitylistdao.saveModalityList(department);
+	}
 	
 	@Override
 	public void setRadiologyOrderDao(RadiologyOrderDAO radiologyOrderDAO) {
@@ -126,6 +139,16 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 		OrderContext orderContext = new OrderContext();
 		orderContext.setCareSetting(radiologyProperties.getRadiologyCareSetting());
 		orderContext.setOrderType(radiologyProperties.getRadiologyTestOrderType());
+		
+		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+		System.out.println("orderService.saveOrder getUuid " + radiologyOrder.getUuid());
+		System.out.println("orderService.saveOrder getOrderId " + radiologyOrder.getOrderId());
+		System.out.println("orderService.saveOrder getOrderer " + radiologyOrder.getOrderer());
+		System.out.println("orderService.saveOrder getStudy " + radiologyOrder.getStudy());
+		System.out.println("orderService.saveOrder getPatient" + radiologyOrder.getPatient());
+		System.out.println("orderService.saveOrder getCareSetting" + radiologyOrder.getCareSetting());
+		System.out.println("orderService.saveOrder getEncounter" + radiologyOrder.getEncounter());
+		System.out.println("orderService.saveOrder getUrgency" + radiologyOrder.getUrgency());
 		
 		final RadiologyOrder result = (RadiologyOrder) orderService.saveOrder(radiologyOrder, orderContext);
 		saveStudy(result.getStudy());

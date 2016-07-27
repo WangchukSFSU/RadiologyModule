@@ -5,22 +5,29 @@
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="
-                        http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context-3.0.xsd
-                        http://www.springframework.org/schema/util
-                        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  		    http://www.springframework.org/schema/context
+  		    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  		    http://www.springframework.org/schema/jee
+  		    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+  		    http://www.springframework.org/schema/tx
+  		    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+  		    http://www.springframework.org/schema/aop
+  		    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+  		    http://www.springframework.org/schema/util
+  		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<bean id="radiologyService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
 			<ref bean="transactionManager" />
 		</property>
-		<property name="target">
+		<property name="target">				
 			<bean class="org.openmrs.module.radiology.impl.RadiologyServiceImpl">
 				<property name="radiologyOrderDao">
 					<bean
@@ -37,6 +44,13 @@
 						</property>
 					</bean>
 				</property>
+                                <property name="modalitylistdao">
+					<bean class="org.openmrs.module.radiology.db.hibernate.RadiologyModalityListDAOImpl">
+						<property name="sessionFactory">
+							<ref bean="sessionFactory" />
+						</property>
+					</bean>
+				</property>
 				<property name="radiologyReportDAO">
 					<bean
 						class="org.openmrs.module.radiology.db.hibernate.RadiologyReportDAOImpl">
@@ -44,12 +58,13 @@
 							<ref bean="sessionFactory" />
 						</property>
 					</bean>
-				</property>
+				</property>                          
 				<property name="orderService" ref="orderService"></property>
 				<property name="encounterService" ref="encounterService"></property>
 				<property name="radiologyProperties" ref="radiologyProperties"></property>
 				<property name="emrEncounterService" ref="emrEncounterService"></property>
 			</bean>
+    
 		</property>
 		<property name="preInterceptors">
 			<ref bean="serviceInterceptors" />
@@ -68,3 +83,4 @@
 		</property>
 	</bean>
 </beans>
+

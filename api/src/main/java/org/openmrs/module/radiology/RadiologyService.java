@@ -32,6 +32,8 @@ public interface RadiologyService extends OpenmrsService {
 	
 	public void setStudyDAO(StudyDAO studyDAO);
 	
+	public RadiologyModalityList saveModalityList(RadiologyModalityList modalityList);
+	
 	public void setOrderService(OrderService orderService);
 	
 	public void setEncounterService(EncounterService encounterService);
