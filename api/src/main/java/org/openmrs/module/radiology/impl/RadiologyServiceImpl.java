@@ -34,11 +34,13 @@ import org.openmrs.module.radiology.RadiologyModalityList;
 import org.openmrs.module.radiology.RadiologyOrder;
 import org.openmrs.module.radiology.RadiologyProperties;
 import org.openmrs.module.radiology.RadiologyService;
+import org.openmrs.module.radiology.RadiologyStudyList;
 import org.openmrs.module.radiology.ScheduledProcedureStepStatus;
 import org.openmrs.module.radiology.Study;
 import org.openmrs.module.radiology.db.RadiologyModalityListDAO;
 import org.openmrs.module.radiology.db.RadiologyOrderDAO;
 import org.openmrs.module.radiology.db.RadiologyReportDAO;
+import org.openmrs.module.radiology.db.RadiologyStudyListDAO;
 import org.openmrs.module.radiology.db.StudyDAO;
 import org.openmrs.module.radiology.hl7.CommonOrderOrderControl;
 import org.openmrs.module.radiology.report.RadiologyReport;
@@ -65,13 +67,24 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	
 	private RadiologyModalityListDAO modalitylistdao;
 	
+	private RadiologyStudyListDAO studylistdao;
+	
+	public void setStudylistdao(RadiologyStudyListDAO studylistdao) {
+		this.studylistdao = studylistdao;
+	}
+	
 	public void setModalitylistdao(RadiologyModalityListDAO modalitylistdao) {
 		this.modalitylistdao = modalitylistdao;
 	}
 	
 	@Override
-	public RadiologyModalityList saveModalityList(RadiologyModalityList department) {
-		return modalitylistdao.saveModalityList(department);
+	public RadiologyModalityList saveModalityList(RadiologyModalityList modalitylist) {
+		return modalitylistdao.saveModalityList(modalitylist);
+	}
+	
+	@Override
+	public RadiologyStudyList saveStudyList(RadiologyStudyList studylist) {
+		return studylistdao.saveStudyList(studylist);
 	}
 	
 	@Override

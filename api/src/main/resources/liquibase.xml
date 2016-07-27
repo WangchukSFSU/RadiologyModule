@@ -297,6 +297,24 @@
 			<column name="modalityId" type="int" />	
 		</createTable>
 	</changeSet>
+           <changeSet id="radiology-33" author="tenzin">
+		<sql>
+			drop table if exists RadiologyStudyList
+		</sql>
+	</changeSet>
+        <changeSet author="tenzin" id="radiology-34">
+		<preConditions onFail="WARN" onError="WARN">
+			<not>
+				<tableExists tableName="RadiologyStudyList" />
+			</not>
+		</preConditions>
+		<createTable tableName="RadiologyStudyList">
+                    <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+			<column name="studyConceptId" type="int" />	
+		</createTable>
+	</changeSet>
         
 
    
