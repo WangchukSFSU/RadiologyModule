@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.radiology.db.hibernate;
 
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.radiology.RadiologyModalityList;
 import org.openmrs.module.radiology.db.RadiologyModalityListDAO;
@@ -34,6 +35,19 @@ public class RadiologyModalityListDAOImpl implements RadiologyModalityListDAO {
 		sessionFactory.getCurrentSession()
 				.saveOrUpdate(modality);
 		return modality;
+	}
+	
+	@Override
+	public List<RadiologyModalityList> getAllModality() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(RadiologyModalityList.class)
+				.list();
+	}
+	
+	@Override
+	public RadiologyModalityList getModality(Integer id) {
+		return (RadiologyModalityList) sessionFactory.getCurrentSession()
+				.get(RadiologyModalityList.class, id);
 	}
 	
 }

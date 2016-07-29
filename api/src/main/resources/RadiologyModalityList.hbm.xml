@@ -8,7 +8,7 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="id" insert="false" />
-                <property name="modalityId"  column="modalityId" not-null="false"  ></property>
+                <property name="modalityId"  column="modalityId" not-null="false" type="int" unique="true"></property>
 		
 	</class>
 </hibernate-mapping>

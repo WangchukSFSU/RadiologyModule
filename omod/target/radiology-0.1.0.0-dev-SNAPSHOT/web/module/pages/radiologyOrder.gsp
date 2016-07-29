@@ -1,3 +1,5 @@
+
+
 <%
  ui.decorateWith("appui", "standardEmrPage")
 
@@ -9,11 +11,30 @@ ui.includeCss("uicommons", "datatables/dataTables_jui.css")
    var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
         { label: "${ ui.escapeJs(patient.familyName + ', ' + patient.givenName ) }" , link: '${ui.escapeJs(returnUrl)}'},
-        { label: "RadiologyOrder"}
+         { label: "RadiologyOrder" }
+  
     ];
 var ret = "${returnUrl}";
 var x = 1;
 </script>
+
+<script>
+        jq = jQuery;
+    jq(document).ready(function() {
+    
+    jq("#AddRadiologyOrderForm").hide();
+    
+ jq("#addRadiologyOrderBtn").click(function(){
+     jq("#performedStatusCompletedOrder").hide();
+    jq("#AddRadiologyOrderForm").show();
+});
+ 
+ 
+  
+    
+    });
+    
+    </script>
 
 <div>
 <div id="performedStatusesDropdown" class="performedStatusesContainer">
@@ -26,30 +47,21 @@ var x = 1;
         </select>        
         </span>
         
-<span class="right"><button type="button">Add Radiology Order</button></span>
+<span class="right"><button type="button" id="addRadiologyOrderBtn">Add Radiology Order</button></span>
 <span class="right"><button type="button">Message Patient</button></span>
-     
+
 </div>
 
 
-<table>
-  <tr>
-    <th>Order</th>
-    <th>OrderStartDate</th>
-    <th>DateStudyTaken</th>
-  </tr>
-  <tr>
+<div id="performedStatusCompletedOrder">
+    ${ ui.includeFragment("radiology", "performedStatusCompletedOrder") }
     
-  </tr>
- <c:forEach items="${performedStatusest}" var="address">
-  <tr>
-   <td><c:out value="${address.value}" /></td>
-   herkwrweerwerwerewerwdasdsadsasdasdasdad
-  </tr>
- </c:forEach>
+    </div>
     
-
-  
-</table>
-
-
+    
+    <div id="AddRadiologyOrderForm">
+    ${ ui.includeFragment("radiology", "addRadiologyOrderForm") }
+    
+    </div>
+    
+    

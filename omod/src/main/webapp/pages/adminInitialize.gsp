@@ -1,5 +1,5 @@
 <%
- ui.decorateWith("appui", "standardEmrPage")
+ui.decorateWith("appui", "standardEmrPage")
 
 ui.includeJavascript("uicommons", "datatables/jquery.dataTables.min.js")
 ui.includeCss("uicommons", "datatables/dataTables_jui.css")
@@ -7,17 +7,15 @@ ui.includeCss("uicommons", "datatables/dataTables_jui.css")
 
 ${ ui.includeFragment("radiology", "modalitySoftware") }
 
-${ ui.includeFragment("radiology", "breadcrumb") }
 
+<script type="text/javascript">
+    var breadcrumbs = [
+    { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
+    { label: "Admin Initialization"}
+    ];
+</script>
 
-
- 
-${ ui.includeFragment("radiology", "modalitylist",
-        [   start: "2011-02-16",
-            end: "2011-02-16 23:59:59.999",
-            properties: ["location", "encounterDatetime"],
-            
-        ]) }
+${ ui.includeFragment("radiology", "modalitylist") }
 
 
 

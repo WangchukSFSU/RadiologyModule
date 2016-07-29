@@ -36,6 +36,11 @@ public interface RadiologyService extends OpenmrsService {
 	
 	public RadiologyStudyList saveStudyList(RadiologyStudyList studyList);
 	
+	List<RadiologyModalityList> getAllModality();
+	
+	@Transactional(readOnly = true)
+	RadiologyModalityList getModality(Integer id);
+	
 	public void setOrderService(OrderService orderService);
 	
 	public void setEncounterService(EncounterService encounterService);

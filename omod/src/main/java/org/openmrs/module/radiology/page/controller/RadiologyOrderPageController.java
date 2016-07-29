@@ -5,14 +5,27 @@
  */
 package org.openmrs.module.radiology.page.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.openmrs.ConceptName;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.radiology.PerformedProcedureStepStatus;
+import org.openmrs.module.radiology.RadiologyModalityList;
+import org.openmrs.module.radiology.RadiologyProperties;
+import org.openmrs.module.radiology.RadiologyService;
+import org.openmrs.ui.framework.fragment.FragmentModel;
 import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 public class RadiologyOrderPageController {
+	
+	@Autowired
+	private RadiologyProperties radiologyProperties;
 	
 	public void controller(PageModel model, @RequestParam(value = "returnUrl", required = false) String returnUrl,
 			@RequestParam(value = "patientId", required = false) String page) {
@@ -24,22 +37,40 @@ public class RadiologyOrderPageController {
 			System.out.println("list performned status " + performedStatus.name());
 		}
 		
-		model.addAttribute("returnUrl", returnUrl);
-		model.addAttribute("performedStatuses", performedStatuses);
+		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		
-	}
-	
-	@ModelAttribute("performedStatusest")
-	private Map<String, String> getPerformedStatusList() {
+		final List<RadiologyModalityList> modalityListFromDb = radiologyservice.getAllModality();
 		
-		final Map<String, String> performedStatusest = new HashMap<String, String>();
-		performedStatusest.put("", "Select");
+		ArrayList<ConceptName> modalityConceptNameList = new ArrayList();
 		
-		for (PerformedProcedureStepStatus performedStatus : PerformedProcedureStepStatus.values()) {
-			performedStatusest.put(performedStatus.name(), performedStatus.name());
+		for (RadiologyModalityList modalityConceptId : modalityListFromDb) {
+			
+			int modalityConceptIdInteger = modalityConceptId.getModalityId();
+			ConceptName modalityConceptName = Context.getConceptService()
+					.getConcept(modalityConceptIdInteger)
+					.getName();
+			modalityConceptNameList.add(modalityConceptName);
+			
 		}
 		
-		return performedStatusest;
+		// RadiologyProperties rd = new RadiologyProperties();
+		
+		// String radiologyConceptClassNames = radiologyProperties.getRadiologyConceptClassNames();
+		
+		// System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJ" + radiologyConceptClassNames);
+		
+		model.addAttribute("modalityConceptNameList", modalityConceptNameList);
+		model.addAttribute("performedStatuses", performedStatuses);
+		model.addAttribute("returnUrl", returnUrl);
+		// model.addAttribute("radiologyConceptClassNames", radiologyConceptClassNames);
+	}
+	
+	public void getRadiologyOrderForm(FragmentModel model) {
+		
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
+		ModelAndView mav = new ModelAndView("radiology/radiologyOrderAll.page");
+		System.out.println("ORDER SAVEDCSDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+		
 	}
 	
 }

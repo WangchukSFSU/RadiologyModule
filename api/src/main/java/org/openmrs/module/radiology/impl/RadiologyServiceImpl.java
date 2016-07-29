@@ -67,6 +67,14 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	
 	private RadiologyModalityListDAO modalitylistdao;
 	
+	public RadiologyModalityListDAO getModalitylistdao() {
+		return modalitylistdao;
+	}
+	
+	public RadiologyStudyListDAO getStudylistdao() {
+		return studylistdao;
+	}
+	
 	private RadiologyStudyListDAO studylistdao;
 	
 	public void setStudylistdao(RadiologyStudyListDAO studylistdao) {
@@ -83,8 +91,18 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	}
 	
 	@Override
+	public List<RadiologyModalityList> getAllModality() {
+		return modalitylistdao.getAllModality();
+	}
+	
+	@Override
 	public RadiologyStudyList saveStudyList(RadiologyStudyList studylist) {
 		return studylistdao.saveStudyList(studylist);
+	}
+	
+	@Override
+	public RadiologyModalityList getModality(Integer id) {
+		return modalitylistdao.getModality(id);
 	}
 	
 	@Override

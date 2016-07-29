@@ -282,7 +282,12 @@ public class RadiologyProperties extends ModuleProperties {
 	 */
 	public String getRadiologyConceptClassNames() {
 		
+		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		
 		String radiologyConceptClassUuidSetting = getGlobalProperty(RadiologyConstants.GP_RADIOLOGY_CONCEPT_CLASSES, true);
+		
+		System.out.println("radiologyConceptClassUuidSetting " + radiologyConceptClassUuidSetting);
+		
 		radiologyConceptClassUuidSetting = radiologyConceptClassUuidSetting.replace(" ", "");
 		if (!radiologyConceptClassUuidSetting.matches("^[0-9a-fA-f,-]+$")) {
 			throw new IllegalStateException(
@@ -301,6 +306,8 @@ public class RadiologyProperties extends ModuleProperties {
 			result = result + fetchedConceptClass.getName() + ",";
 		}
 		result = result.substring(0, result.length() - 1);
+		
+		System.out.println("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK" + result);
 		return result;
 	}
 }

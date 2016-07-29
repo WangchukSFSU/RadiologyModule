@@ -279,12 +279,12 @@
 			<column name="uuid" value="fe898a34-1ade-11e1-9c71-00248140a5eb" />
 		</insert>
 	</changeSet>
-        <changeSet id="radiology-24" author="cortex">
+        <changeSet id="radiology-27" author="cortex">
 		<sql>
 			drop table if exists RadiologyModalityList;
 		</sql>
 	</changeSet>
-        <changeSet author="juanp" id="radiology-25">
+        <changeSet author="juanp" id="radiology-28">
 		<preConditions onFail="WARN" onError="WARN">
 			<not>
 				<tableExists tableName="RadiologyModalityList" />
@@ -294,15 +294,16 @@
                     <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-			<column name="modalityId" type="int" />	
+			<column name="modalityId" type="int">	<constraints unique="true" />
+			</column>
 		</createTable>
 	</changeSet>
-           <changeSet id="radiology-33" author="tenzin">
+           <changeSet id="radiology-36" author="tenzin">
 		<sql>
 			drop table if exists RadiologyStudyList
 		</sql>
 	</changeSet>
-        <changeSet author="tenzin" id="radiology-34">
+        <changeSet author="tenzin" id="radiology-37">
 		<preConditions onFail="WARN" onError="WARN">
 			<not>
 				<tableExists tableName="RadiologyStudyList" />
@@ -312,7 +313,8 @@
                     <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-			<column name="studyConceptId" type="int" />	
+			<column name="studyConceptId" type="int"> <constraints unique="true" />
+			 </column>	
 		</createTable>
 	</changeSet>
         

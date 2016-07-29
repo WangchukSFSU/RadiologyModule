@@ -5,12 +5,17 @@
  */
 package org.openmrs.module.radiology.db;
 
+import java.util.List;
 import org.openmrs.module.radiology.RadiologyModalityList;
 
 /**
  * @author youdon
  */
 public interface RadiologyModalityListDAO {
+	
+	List<RadiologyModalityList> getAllModality();
+	
+	RadiologyModalityList getModality(Integer id);
 	
 	public RadiologyModalityList saveModalityList(RadiologyModalityList modality);
 }
