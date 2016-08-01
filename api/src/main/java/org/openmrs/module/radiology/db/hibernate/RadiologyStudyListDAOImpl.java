@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.radiology.db.hibernate;
 
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.radiology.RadiologyStudyList;
 import org.openmrs.module.radiology.db.RadiologyStudyListDAO;
@@ -36,4 +37,16 @@ public class RadiologyStudyListDAOImpl implements RadiologyStudyListDAO {
 		return studyList;
 	}
 	
+	@Override
+	public List<RadiologyStudyList> getAllStudy() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(RadiologyStudyList.class)
+				.list();
+	}
+	
+	@Override
+	public RadiologyStudyList getStudy(Integer id) {
+		return (RadiologyStudyList) sessionFactory.getCurrentSession()
+				.get(RadiologyStudyList.class, id);
+	}
 }

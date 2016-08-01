@@ -96,6 +96,11 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	}
 	
 	@Override
+	public List<RadiologyStudyList> getAllStudy() {
+		return studylistdao.getAllStudy();
+	}
+	
+	@Override
 	public RadiologyStudyList saveStudyList(RadiologyStudyList studylist) {
 		return studylistdao.saveStudyList(studylist);
 	}
@@ -103,6 +108,11 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	@Override
 	public RadiologyModalityList getModality(Integer id) {
 		return modalitylistdao.getModality(id);
+	}
+	
+	@Override
+	public RadiologyStudyList getStudy(Integer id) {
+		return studylistdao.getStudy(id);
 	}
 	
 	@Override

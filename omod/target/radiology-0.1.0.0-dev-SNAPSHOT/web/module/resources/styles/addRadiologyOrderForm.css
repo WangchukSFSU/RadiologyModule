@@ -9,10 +9,10 @@ and open the template in the editor.
 */
 
 
-#performedStatusesDropdown {
-    padding-bottom: 70px;
+
+#dropdown1 {
+    background-color: red;
+    display: inline;
 }
 
-#performedStatuses {
-    height: 36px;
-}
+

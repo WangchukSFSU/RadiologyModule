@@ -9,10 +9,13 @@ and open the template in the editor.
 */
 
 
-#performedStatusesDropdown {
-    padding-bottom: 70px;
+
+#diagnosislistSelect {
+ 
+    display: inline;
 }
 
-#performedStatuses {
-    height: 36px;
+#studySelect {
+ 
+    display: inline;
 }

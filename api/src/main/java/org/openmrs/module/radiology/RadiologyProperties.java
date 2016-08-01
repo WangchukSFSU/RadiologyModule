@@ -284,6 +284,9 @@ public class RadiologyProperties extends ModuleProperties {
 		
 		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		
+		System.out.println("RadiologyConstants.GP_RADIOLOGY_CONCEPT_CLASSES, "
+				+ RadiologyConstants.GP_RADIOLOGY_CONCEPT_CLASSES);
+		
 		String radiologyConceptClassUuidSetting = getGlobalProperty(RadiologyConstants.GP_RADIOLOGY_CONCEPT_CLASSES, true);
 		
 		System.out.println("radiologyConceptClassUuidSetting " + radiologyConceptClassUuidSetting);

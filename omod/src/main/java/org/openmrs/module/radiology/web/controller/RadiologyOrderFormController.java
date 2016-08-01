@@ -316,6 +316,7 @@ public class RadiologyOrderFormController {
 		final List<String> urgencies = new LinkedList<String>();
 		
 		for (Order.Urgency urgency : Order.Urgency.values()) {
+			System.out.println("FFFFFFFFFFFFFFFF" + urgency.name());
 			urgencies.add(urgency.name());
 		}
 		

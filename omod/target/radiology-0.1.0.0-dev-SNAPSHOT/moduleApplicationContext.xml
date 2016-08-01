@@ -21,6 +21,7 @@
   		    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
   		    http://www.springframework.org/schema/util
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+  
 
 	<bean id="radiologyService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
@@ -89,5 +90,7 @@
 			</list>
 		</property>
 	</bean>
+        
+        
 </beans>
 

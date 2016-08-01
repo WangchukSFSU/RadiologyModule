@@ -5,12 +5,17 @@
  */
 package org.openmrs.module.radiology.db;
 
+import java.util.List;
 import org.openmrs.module.radiology.RadiologyStudyList;
 
 /**
  * @author youdon
  */
 public interface RadiologyStudyListDAO {
+	
+	RadiologyStudyList getStudy(Integer id);
+	
+	List<RadiologyStudyList> getAllStudy();
 	
 	public RadiologyStudyList saveStudyList(RadiologyStudyList studylist);
 }
