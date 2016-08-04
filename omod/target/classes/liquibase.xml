@@ -8,12 +8,12 @@
 	<!-- See http://www.liquibase.org/manual/home#available_database_refactorings 
 		for a list of supported elements and attributes -->
 
-	<changeSet id="radiology-1" author="cortex">
+	<changeSet id="radiology-2" author="cortex">
 		<sql>
 			drop table if exists radiology_study;
 		</sql>
 	</changeSet>
-	<changeSet author="juanp" id="radiology-4">
+	<changeSet author="juanp" id="radiology-3">
 		<preConditions onFail="WARN" onError="WARN">
 			<not>
 				<tableExists tableName="radiology_study" />
@@ -36,10 +36,10 @@
 				defaultValue="-1"></column>
 			<column name="reading_physician_user_id" type="int"
 				defaultValue="-1"></column>
-			<column name="mwl_status" type="int" defaultValue="-1"></column>
+			<column name="mwlstatus" type="int" defaultValue="-1"></column>
 		</createTable>
-	</changeSet>
-	<changeSet id="radiology-5" author="teleivo">
+        </changeSet>
+   <changeSet id="radiology-5" author="teleivo">
 		<comment>Change modality column type to varchar(16) in radiology_study
 			table to represent DICOM Tag Modality (0008,0060) value
 			representation CS (Code String) defined in DICOM PS3.5 2014b - Data
@@ -61,44 +61,7 @@
 			columnName="priority" columnDataType="varchar(7)" />
 		<addNotNullConstraint tableName="radiology_study"
 			columnName="priority" columnDataType="varchar(7)" />
-	</changeSet>
-	<changeSet id="radiology-7" author="teleivo">
-		<comment>column scheduled_status represents DICOM Scheduled Procedure
-			Step Status (0040,0020) which is now mapped to by enum
-			ScheduledProcedureStepStatus. Max length 9 chosen for the column
-			because of max ScheduledProcedureStepStatus "SCHEDULED"</comment>
-		<modifyDataType tableName="radiology_study" columnName="scheduled_status"
-			newDataType="varchar(9)" />
-		<dropDefaultValue tableName="radiology_study"
-			columnName="scheduled_status" columnDataType="varchar(9)" />
-		<addDefaultValue tableName="radiology_study"
-			columnName="scheduled_status" columnDataType="varchar(9)"
-			defaultValue="null" />
-	</changeSet>
-	<changeSet id="radiology-8" author="teleivo">
-		<comment>column performed_status represents DICOM Performed Procedure
-			Step Status (0040,0252) which is now mapped to by enum
-			PerformedProcedureStepStatus. Max length 12 chosen for the column
-			because of max PerformedProcedureStepStatus "DISCONTINUED"</comment>
-		<modifyDataType tableName="radiology_study" columnName="performed_status"
-			newDataType="varchar(12)" />
-		<dropDefaultValue tableName="radiology_study"
-			columnName="performed_status" columnDataType="varchar(12)" />
-		<addDefaultValue tableName="radiology_study"
-			columnName="performed_status" columnDataType="varchar(12)"
-			defaultValue="null" />
-	</changeSet>
-	<changeSet id="radiology-9" author="teleivo">
-		<comment>column mwl status is now mapped to by enum MwlStatus. Max
-			length 17 chosen for the column because of max element
-			"UNDISCONTINUE_ERR"</comment>
-		<modifyDataType tableName="radiology_study" columnName="mwl_status"
-			newDataType="varchar(17)" />
-		<dropDefaultValue tableName="radiology_study"
-			columnName="mwl_status" columnDataType="varchar(17)" />
-		<addNotNullConstraint tableName="radiology_study"
-			columnName="mwl_status" columnDataType="varchar(17)" />
-	</changeSet>
+	</changeSet>     
 	<changeSet id="radiology-10" author="teleivo">
 		<comment>rename column 'uid' to 'study_instance_uid' to make clear
 			that the column represents the Study Instance UID defined by the
@@ -106,21 +69,10 @@
 		<renameColumn columnDataType="varchar(255)"
 			newColumnName="study_instance_uid" oldColumnName="uid" tableName="radiology_study" />
 	</changeSet>
-	<changeSet id="radiology-11" author="teleivo">
-		<comment>rename column 'id' to 'study_id'.</comment>
-		<renameColumn columnDataType="int" newColumnName="study_id"
+	<changeSet id="radiology-31" author="teleivo">
+		<comment>rename column 'id' to 'studyid'.</comment>
+		<renameColumn columnDataType="int" newColumnName="studyid"
 			oldColumnName="id" tableName="radiology_study" />
-	</changeSet>
-	<changeSet id="radiology-12" author="teleivo">
-		<comment>necessary because of changeset 'radiology-11'. mysql looses
-			'NOT NULL' and 'AUTOINCREMENT' these properties are therefore added
-			again explicitly (see https://liquibase.jira.com/browse/CORE-1019)</comment>
-		<dropDefaultValue columnDataType="int" columnName="study_id"
-			tableName="radiology_study" />
-		<addNotNullConstraint columnDataType="int"
-			columnName="study_id" tableName="radiology_study" />
-		<addAutoIncrement columnDataType="int" columnName="study_id"
-			incrementBy="1" tableName="radiology_study" />
 	</changeSet>
 	<changeSet id="radiology-13" author="bgeVam">
 		<comment>add roles</comment>
@@ -210,14 +162,6 @@
 			<column name="date_created" valueDate="2015-09-18" />
 			<column name="uuid" value="13fc9b4a-49ed-429c-9dde-ca005b387a3d" />
 		</insert>
-	</changeSet>
-	<changeSet id="radiology-19" author="teleivo">
-		<comment>Study Instance UID is queried for and it shall be unique see
-			DICOM standard (2013: Part 5, Chapter 9 Unique Identifiers)</comment>
-		<createIndex indexName="radiology_study_study_instance_uid_index"
-			tableName="radiology_study" unique="true">
-			<column name="study_instance_uid" type="varchar(255)" />
-		</createIndex>
 	</changeSet>
 	<changeSet id="radiology-20" author="teleivo">
 		<comment>radiology_study shall only exist with a radiology_order.
@@ -317,10 +261,86 @@
 			 </column>	
 		</createTable>
 	</changeSet>
-        
-
-   
+        <changeSet id="radiology-30" author="teleivo">
+		<comment>column mwl status is now mapped to by enum MwlStatus. Max
+			length 17 chosen for the column because of max element
+			"UNDISCONTINUE_ERR"</comment>
+		<modifyDataType tableName="radiology_study" columnName="mwlstatus"
+			newDataType="varchar(17)" />
+		<dropDefaultValue tableName="radiology_study"
+			columnName="mwlstatus" columnDataType="varchar(17)" />
+		<addNotNullConstraint tableName="radiology_study"
+			columnName="mwlstatus" columnDataType="varchar(17)" />
+	</changeSet>
+        <changeSet id="radiology-36" author="teleivo">
+		<comment>rename column 'id' to 'studyId'.</comment>
+		<renameColumn columnDataType="int" newColumnName="studyId"
+			oldColumnName="id" tableName="radiology_study" />
+	</changeSet>
+        	<changeSet id="radiology-37" author="teleivo">
+		<comment>rename column 'uid' to 'studyInstanceUid' to make clear
+			that the column represents the Study Instance UID defined by the
+			DICOM standard</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="studyInstanceUid" oldColumnName="uid" tableName="radiology_study" />
+	</changeSet>
+        	<changeSet id="radiology-38" author="teleivo">
+		<comment>rename column scheduledStatus</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="scheduledStatus" oldColumnName="scheduled_status" tableName="radiology_study" />
+	</changeSet>
+        <changeSet id="radiology-39" author="teleivo">
+		<comment>rename column performedStatus</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="performedStatus" oldColumnName="performed_status" tableName="radiology_study" />
+	</changeSet>
+        <changeSet id="radiology-40" author="teleivo">
+		<comment>necessary because of changeset 'radiology-11'. mysql looses
+			'NOT NULL' and 'AUTOINCREMENT' these properties are therefore added
+			again explicitly (see https://liquibase.jira.com/browse/CORE-1019)</comment>
+		<dropDefaultValue columnDataType="int" columnName="studyId"
+			tableName="radiology_study" />
+		<addNotNullConstraint columnDataType="int"
+			columnName="studyId" tableName="radiology_study" />
+		<addAutoIncrement columnDataType="int" columnName="studyId"
+			incrementBy="1" tableName="radiology_study" />
+	</changeSet>
+        <changeSet id="radiology-41" author="teleivo">
+		<comment>Study Instance UID is queried for and it shall be unique see
+			DICOM standard (2013: Part 5, Chapter 9 Unique Identifiers)</comment>
+		<createIndex indexName="radiology_study_studyInstanceUid_index"
+			tableName="radiology_study" unique="true">
+			<column name="studyInstanceUid" type="varchar(255)" />
+		</createIndex>
+	</changeSet>
+        	<changeSet id="radiology-42" author="teleivo">
+		<comment>column scheduled_status represents DICOM Scheduled Procedure
+			Step Status (0040,0020) which is now mapped to by enum
+			ScheduledProcedureStepStatus. Max length 9 chosen for the column
+			because of max ScheduledProcedureStepStatus "SCHEDULED"</comment>
+		<modifyDataType tableName="radiology_study" columnName="scheduledStatus"
+			newDataType="varchar(9)" />
+		<dropDefaultValue tableName="radiology_study"
+			columnName="scheduledStatus" columnDataType="varchar(9)" />
+		<addDefaultValue tableName="radiology_study"
+			columnName="scheduledStatus" columnDataType="varchar(9)"
+			defaultValue="null" />
+	</changeSet>
+        <changeSet id="radiology-43" author="teleivo">
+		<comment>column performed_status represents DICOM Performed Procedure
+			Step Status (0040,0252) which is now mapped to by enum
+			PerformedProcedureStepStatus. Max length 12 chosen for the column
+			because of max PerformedProcedureStepStatus "DISCONTINUED"</comment>
+		<modifyDataType tableName="radiology_study" columnName="performedStatus"
+			newDataType="varchar(12)" />
+		<dropDefaultValue tableName="radiology_study"
+			columnName="performedStatus" columnDataType="varchar(12)" />
+		<addDefaultValue tableName="radiology_study"
+			columnName="performedStatus" columnDataType="varchar(12)"
+			defaultValue="null" />
+	</changeSet>
+      
 </databaseChangeLog>
 
  
-       
+	

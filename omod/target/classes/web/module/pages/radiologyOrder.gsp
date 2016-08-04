@@ -6,7 +6,7 @@
 ui.includeJavascript("uicommons", "datatables/jquery.dataTables.min.js")
 ui.includeCss("uicommons", "datatables/dataTables_jui.css")
 %>
-
+<% ui.includeCss("radiology", "radiologyOrder.css") %>
 <script type="text/javascript">
    var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
@@ -60,8 +60,9 @@ var x = 1;
     
     
     <div id="AddRadiologyOrderForm">
-    ${ ui.includeFragment("radiology", "addRadiologyOrderForm") }
-    
+    ${ ui.includeFragment("radiology", "addRadiologyOrderForm",[ returnUrl: '${returnUrl}',
+          patient: '${patient}'
+        ]) }
     </div>
     
     

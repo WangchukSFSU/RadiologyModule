@@ -60,8 +60,9 @@ var x = 1;
     
     
     <div id="AddRadiologyOrderForm">
-    ${ ui.includeFragment("radiology", "addRadiologyOrderForm") }
-    
+    ${ ui.includeFragment("radiology", "addRadiologyOrderForm",[ returnUrl: '${returnUrl}',
+          patient: '${patient}'
+        ]) }
     </div>
     
     

@@ -10,9 +10,12 @@ and open the template in the editor.
 
 
 
-#dropdown1 {
-    background-color: red;
+#diagnosislistSelect {
+ 
     display: inline;
 }
 
-
+#studySelect {
+ 
+    display: inline;
+}
