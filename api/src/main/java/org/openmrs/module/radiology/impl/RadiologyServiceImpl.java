@@ -380,6 +380,8 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 			throw new IllegalArgumentException("radiologyOrder.study is required");
 		}
 		
+		System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRR");
+		
 		final String hl7message = DicomUtils.createHL7Message(radiologyOrder, CommonOrderOrderControl.NEW_ORDER);
 		final boolean result = DicomUtils.sendHL7Message(hl7message);
 		

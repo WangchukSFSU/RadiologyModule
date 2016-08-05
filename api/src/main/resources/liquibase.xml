@@ -339,6 +339,11 @@
 			columnName="performedStatus" columnDataType="varchar(12)"
 			defaultValue="null" />
 	</changeSet>
+                <changeSet id="radiology-44" author="tenzin">
+		<comment>rename column mwlstatus</comment>
+		<renameColumn columnDataType="varchar(17)"
+			newColumnName="mwlStatus" oldColumnName="mwlstatus" tableName="radiology_study" />
+	</changeSet>
       
 </databaseChangeLog>
 

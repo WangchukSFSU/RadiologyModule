@@ -64,8 +64,6 @@ public class AddRadiologyOrderFormFragmentController {
 			@RequestParam(value = "priorityname") String priorityname) {
 		
 		System.out.println("JJJJJJJJJJJJJJJJJJJJ start");
-		System.out.println("JJJJJJJJJJJJJJJJJJJJ start");
-		System.out.println("JJJJJJJJJJJJJJJJJJJJ start");
 		
 		RadiologyOrder radiologyOrder = new RadiologyOrder();
 		
@@ -94,6 +92,10 @@ public class AddRadiologyOrderFormFragmentController {
 		
 		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		RadiologyOrder saveOrder = radiologyservice.placeRadiologyOrder(radiologyOrder);
+		
+		if (radiologyservice.placeRadiologyOrderInPacs(saveOrder)) {
+			System.out.println("PACS PACS PACS PACS PACS");
+		}
 		
 		System.out.println("JJJJJJJJJJJJJJJJJJJJ done");
 		
