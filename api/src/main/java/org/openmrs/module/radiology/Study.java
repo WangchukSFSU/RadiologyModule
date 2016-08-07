@@ -27,16 +27,30 @@ public class Study {
 	
 	private PerformedProcedureStepStatus performedStatus;
 	
-	private Modality modality;
+	private String modality;
+	
+	public void setModality(String modality) {
+		this.modality = modality;
+	}
+	
+	public String getModality() {
+		return modality;
+	}
+	
+	private String studyname;
+	
+	public void setStudyname(String studyname) {
+		this.studyname = studyname;
+	}
+	
+	public String getStudyname() {
+		return studyname;
+	}
 	
 	private MwlStatus mwlStatus;
 	
 	public Integer getStudyId() {
 		return studyId;
-	}
-	
-	public Modality getModality() {
-		return modality;
 	}
 	
 	public RadiologyOrder getRadiologyOrder() {
@@ -93,10 +107,6 @@ public class Study {
 	
 	public void setStudyId(Integer studyId) {
 		this.studyId = studyId;
-	}
-	
-	public void setModality(Modality modality) {
-		this.modality = modality;
 	}
 	
 	void setRadiologyOrder(RadiologyOrder radiologyOrder) {

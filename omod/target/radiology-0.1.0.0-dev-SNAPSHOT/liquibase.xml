@@ -344,8 +344,48 @@
 		<renameColumn columnDataType="varchar(17)"
 			newColumnName="mwlStatus" oldColumnName="mwlstatus" tableName="radiology_study" />
 	</changeSet>
+        <changeSet author="tenzin" id="radiology-46">
+    <addColumn tableName="radiology_study">
+        <column name="rml" type="varchar(255)"/>
+    </addColumn>
+</changeSet>
+ <changeSet id="radiology-47" author="tenzin">
+		<comment>rename column modalityname</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="modalityname" oldColumnName="modalityName" tableName="RadiologyModalityList" />
+	</changeSet>
+         <changeSet id="radiology-48" author="tenzin">
+		<comment>rename column rml</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="studyname" oldColumnName="rml" tableName="radiology_study" />
+	</changeSet>
+              <changeSet author="tenzin" id="radiology-49">
+    <addColumn tableName="radiology_study">
+        <column name="diagnosis" type="varchar(255)"/>
+    </addColumn>
+</changeSet>
+ <changeSet author="tenzin" id="radiology-50">
+    <addColumn tableName="radiology_order">
+        <column name="orderinstruction" type="varchar(255)"/>
+    </addColumn>
+</changeSet>
+<changeSet id="radiology-51" author="tenzin">
+		<comment>Remove columns from radiology_study which are not used
+			anymore</comment>
+		<dropColumn columnName="orderinstruction" tableName="radiology_order" />
+		
+	</changeSet>
+         <changeSet author="tenzin" id="radiology-52">
+    <addColumn tableName="radiology_order">
+        <column name="orderdiagnosis" type="varchar(255)"/>
+    </addColumn>
+</changeSet>
+    <changeSet id="radiology-53" author="tenzin">
+		<comment>Remove columns from diagnosis which are not used
+			anymore</comment>
+		<dropColumn columnName="diagnosis" tableName="radiology_study" />
+		
+	</changeSet>
       
 </databaseChangeLog>
 
- 
-	

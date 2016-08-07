@@ -44,6 +44,9 @@ public interface RadiologyService extends OpenmrsService {
 	RadiologyModalityList getModality(Integer id);
 	
 	@Transactional(readOnly = true)
+	RadiologyModalityList getModalityName(String modalityname);
+	
+	@Transactional(readOnly = true)
 	RadiologyStudyList getStudy(Integer id);
 	
 	public void setOrderService(OrderService orderService);

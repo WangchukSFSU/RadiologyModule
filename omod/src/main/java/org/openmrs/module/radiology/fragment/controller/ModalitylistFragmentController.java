@@ -80,6 +80,10 @@ public class ModalitylistFragmentController {
 		for (String modlist : modalityList) {
 			int modalityConcept = Integer.parseInt(modlist);
 			modalityName.setModalityId(modalityConcept);
+			
+			modalityName.setModalityname(Context.getConceptService()
+					.getConcept(modalityConcept)
+					.getDisplayString());
 			Context.getService(RadiologyService.class)
 					.saveModalityList(modalityName);
 			System.out.println("ORDER SAVED");

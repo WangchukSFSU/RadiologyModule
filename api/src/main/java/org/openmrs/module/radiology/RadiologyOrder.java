@@ -18,6 +18,16 @@ public class RadiologyOrder extends TestOrder {
 	
 	private Study study;
 	
+	private String orderdiagnosis;
+	
+	public String getOrderdiagnosis() {
+		return orderdiagnosis;
+	}
+	
+	public void setOrderdiagnosis(String orderdiagnosis) {
+		this.orderdiagnosis = orderdiagnosis;
+	}
+	
 	public Study getStudy() {
 		return study;
 	}

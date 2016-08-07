@@ -15,6 +15,7 @@ import java.util.Map;
 import org.openmrs.Concept;
 import org.openmrs.ConceptName;
 import org.openmrs.Order;
+import org.openmrs.Order.Urgency;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.api.context.Context;
@@ -73,24 +74,20 @@ public class AddRadiologyOrderFormFragmentController {
 		
 		radiologyOrder.setPatient(patient);
 		radiologyOrder.setDateCreated(new Date());
-		
+		radiologyOrder.setInstructions(instructionname);
+		radiologyOrder.setUrgency(Order.Urgency.valueOf(priorityname));
+		radiologyOrder.setOrderdiagnosis(diagnosisname);
 		Study study = new Study();
-		study.setModality(Modality.CR);
-		// study.setMwlStatus(MwlStatus.IN_SYNC);
-		// study.setScheduledStatus(ScheduledProcedureStepStatus.SCHEDULED);
-		radiologyOrder.setStudy(study);
-		// study.setStudyId(1);
-		if (study.getStudyId() == null) {
-			
-			System.out.println("NULNULNULLLLLLLLLLLLLLLLLLLL");
-		}
+		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
+		study.setModality(modalityname);
+		study.setStudyname(studyname);
 		
-		System.out.println("IDIDIDIDIDIDIDIDIDIDI" + study.getStudyId());
+		
+		radiologyOrder.setStudy(study);
 		
 		radiologyOrder.setConcept(Context.getConceptService()
 				.getConcept(1000));
 		
-		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		RadiologyOrder saveOrder = radiologyservice.placeRadiologyOrder(radiologyOrder);
 		
 		if (radiologyservice.placeRadiologyOrderInPacs(saveOrder)) {

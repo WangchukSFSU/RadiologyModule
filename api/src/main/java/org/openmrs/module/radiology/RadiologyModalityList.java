@@ -17,6 +17,16 @@ public class RadiologyModalityList extends BaseOpenmrsObject implements Serializ
 	
 	private Integer id;
 	
+	private String modalityname;
+	
+	public void setModalityname(String modalityname) {
+		this.modalityname = modalityname;
+	}
+	
+	public String getModalityname() {
+		return modalityname;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}

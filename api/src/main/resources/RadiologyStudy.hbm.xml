@@ -25,11 +25,11 @@
 				<param name="enumClassName">org.openmrs.module.radiology.PerformedProcedureStepStatus</param>
 			</type>
 		</property>
+                <property name="studyname" column="studyname"
+                          length="255">
+                </property>
 		<property name="modality" column="modality" length="16"
 			not-null="true">
-			<type name="org.openmrs.util.HibernateEnumType">
-				<param name="enumClassName">org.openmrs.module.radiology.Modality</param>
-			</type>
 		</property>
 		<property name="mwlStatus" column="mwlStatus" length="17"
 			not-null="true">
@@ -37,5 +37,6 @@
 				<param name="enumClassName">org.openmrs.module.radiology.MwlStatus</param>
 			</type>
 		</property>
+              
 	</class>
 </hibernate-mapping>

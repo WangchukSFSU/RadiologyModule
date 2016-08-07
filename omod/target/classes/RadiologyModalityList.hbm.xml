@@ -9,7 +9,8 @@
 		</id>
 		<discriminator column="id" insert="false" />
                 <property name="modalityId"  column="modalityId" not-null="false" type="int" unique="true"></property>
-		
+		 <property name="modalityname" column="modalityname" length="255" unique="true" >
+                    </property>
 	</class>
 </hibernate-mapping>
 

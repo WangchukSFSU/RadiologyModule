@@ -17,5 +17,7 @@ public interface RadiologyModalityListDAO {
 	
 	RadiologyModalityList getModality(Integer id);
 	
+	RadiologyModalityList getModalityName(String modalityname);
+	
 	public RadiologyModalityList saveModalityList(RadiologyModalityList modality);
 }

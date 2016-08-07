@@ -111,6 +111,11 @@ class RadiologyServiceImpl extends BaseOpenmrsService implements RadiologyServic
 	}
 	
 	@Override
+	public RadiologyModalityList getModalityName(String modalityname) {
+		return modalitylistdao.getModalityName(modalityname);
+	}
+	
+	@Override
 	public RadiologyStudyList getStudy(Integer id) {
 		return studylistdao.getStudy(id);
 	}

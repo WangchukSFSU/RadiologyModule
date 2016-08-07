@@ -50,4 +50,9 @@ public class RadiologyModalityListDAOImpl implements RadiologyModalityListDAO {
 				.get(RadiologyModalityList.class, id);
 	}
 	
+	@Override
+	public RadiologyModalityList getModalityName(String modalityname) {
+		return (RadiologyModalityList) sessionFactory.getCurrentSession()
+				.get(RadiologyModalityList.class, modalityname);
+	}
 }
