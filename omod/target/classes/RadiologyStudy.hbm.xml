@@ -28,7 +28,7 @@
                 <property name="studyname" column="studyname"
                           length="255">
                 </property>
-		<property name="modality" column="modality" length="16"
+		<property name="modality" column="modality" length="255"
 			not-null="true">
 		</property>
 		<property name="mwlStatus" column="mwlStatus" length="17"

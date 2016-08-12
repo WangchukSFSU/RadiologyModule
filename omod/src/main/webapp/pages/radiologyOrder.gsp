@@ -20,16 +20,21 @@ var x = 1;
 
 <script>
         jq = jQuery;
-    jq(document).ready(function() {
-    
+    jq(document).ready(function() { 
     jq("#AddRadiologyOrderForm").hide();
+    jq("#EmailForm").hide();
     
  jq("#addRadiologyOrderBtn").click(function(){
      jq("#performedStatusCompletedOrder").hide();
+     jq("#EmailForm").hide();
     jq("#AddRadiologyOrderForm").show();
 });
  
- 
+  jq("#emailform").click(function(){
+     jq("#performedStatusCompletedOrder").hide();
+     jq("#EmailForm").show();
+    jq("#AddRadiologyOrderForm").hide();
+});
   
     
     });
@@ -48,13 +53,15 @@ var x = 1;
         </span>
         
 <span class="right"><button type="button" id="addRadiologyOrderBtn">Add Radiology Order</button></span>
-<span class="right"><button type="button">Message Patient</button></span>
+<span class="right"><button type="button" id="emailform">Message Patient</button></span>
 
 </div>
 
 
 <div id="performedStatusCompletedOrder">
-    ${ ui.includeFragment("radiology", "performedStatusCompletedOrder") }
+    ${ ui.includeFragment("radiology", "performedStatusCompletedOrder",[ returnUrl: '${returnUrl}',
+          patient: '${patient}'
+        ]) }
     
     </div>
     
@@ -65,4 +72,11 @@ var x = 1;
         ]) }
     </div>
     
+    
+    
+       <div id="EmailForm">
+    ${ ui.includeFragment("radiology", "emailform",[ returnUrl: '${returnUrl}',
+          patient: '${patient}'
+        ]) }
+    </div>
     

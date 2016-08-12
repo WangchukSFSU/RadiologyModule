@@ -247,6 +247,18 @@
 			drop table if exists RadiologyStudyList
 		</sql>
 	</changeSet>
+        
+        <changeSet id="radiology-30" author="teleivo">
+		<comment>column mwl status is now mapped to by enum MwlStatus. Max
+			length 17 chosen for the column because of max element
+			"UNDISCONTINUE_ERR"</comment>
+		<modifyDataType tableName="radiology_study" columnName="mwlstatus"
+			newDataType="varchar(17)" />
+		<dropDefaultValue tableName="radiology_study"
+			columnName="mwlstatus" columnDataType="varchar(17)" />
+		<addNotNullConstraint tableName="radiology_study"
+			columnName="mwlstatus" columnDataType="varchar(17)" />
+	</changeSet>
         <changeSet author="tenzin" id="radiology-37">
 		<preConditions onFail="WARN" onError="WARN">
 			<not>
@@ -260,29 +272,6 @@
 			<column name="studyConceptId" type="int"> <constraints unique="true" />
 			 </column>	
 		</createTable>
-	</changeSet>
-        <changeSet id="radiology-30" author="teleivo">
-		<comment>column mwl status is now mapped to by enum MwlStatus. Max
-			length 17 chosen for the column because of max element
-			"UNDISCONTINUE_ERR"</comment>
-		<modifyDataType tableName="radiology_study" columnName="mwlstatus"
-			newDataType="varchar(17)" />
-		<dropDefaultValue tableName="radiology_study"
-			columnName="mwlstatus" columnDataType="varchar(17)" />
-		<addNotNullConstraint tableName="radiology_study"
-			columnName="mwlstatus" columnDataType="varchar(17)" />
-	</changeSet>
-        <changeSet id="radiology-36" author="teleivo">
-		<comment>rename column 'id' to 'studyId'.</comment>
-		<renameColumn columnDataType="int" newColumnName="studyId"
-			oldColumnName="id" tableName="radiology_study" />
-	</changeSet>
-        	<changeSet id="radiology-37" author="teleivo">
-		<comment>rename column 'uid' to 'studyInstanceUid' to make clear
-			that the column represents the Study Instance UID defined by the
-			DICOM standard</comment>
-		<renameColumn columnDataType="varchar(255)"
-			newColumnName="studyInstanceUid" oldColumnName="uid" tableName="radiology_study" />
 	</changeSet>
         	<changeSet id="radiology-38" author="teleivo">
 		<comment>rename column scheduledStatus</comment>
@@ -304,14 +293,6 @@
 			columnName="studyId" tableName="radiology_study" />
 		<addAutoIncrement columnDataType="int" columnName="studyId"
 			incrementBy="1" tableName="radiology_study" />
-	</changeSet>
-        <changeSet id="radiology-41" author="teleivo">
-		<comment>Study Instance UID is queried for and it shall be unique see
-			DICOM standard (2013: Part 5, Chapter 9 Unique Identifiers)</comment>
-		<createIndex indexName="radiology_study_studyInstanceUid_index"
-			tableName="radiology_study" unique="true">
-			<column name="studyInstanceUid" type="varchar(255)" />
-		</createIndex>
 	</changeSet>
         	<changeSet id="radiology-42" author="teleivo">
 		<comment>column scheduled_status represents DICOM Scheduled Procedure
@@ -350,9 +331,10 @@
     </addColumn>
 </changeSet>
  <changeSet id="radiology-47" author="tenzin">
-		<comment>rename column modalityname</comment>
-		<renameColumn columnDataType="varchar(255)"
-			newColumnName="modalityname" oldColumnName="modalityName" tableName="RadiologyModalityList" />
+		<comment>add column modalityname</comment>
+                 <addColumn tableName="RadiologyModalityList">
+        <column name="modalityname" type="varchar(255)"/>
+    </addColumn>
 	</changeSet>
          <changeSet id="radiology-48" author="tenzin">
 		<comment>rename column rml</comment>
@@ -384,6 +366,23 @@
 		<comment>Remove columns from diagnosis which are not used
 			anymore</comment>
 		<dropColumn columnName="diagnosis" tableName="radiology_study" />
+		
+	</changeSet>
+        
+<changeSet id="radiology-54" author="teleivo">
+		<comment>rename column 'uid' to 'studyInstanceUid' to make clear
+			that the column represents the Study Instance UID defined by the
+			DICOM standard</comment>
+		<renameColumn columnDataType="varchar(255)"
+			newColumnName="studyInstanceUid" oldColumnName="study_instance_uid" tableName="radiology_study" />
+	</changeSet>
+         <changeSet id="radiology-55" author="tenzin">
+		<comment>Change modality column type to varchar(16) in radiology_study
+			table to represent DICOM Tag Modality (0008,0060) value
+			representation CS (Code String) defined in DICOM PS3.5 2014b - Data
+			Structures and Encoding</comment>
+		<modifyDataType tableName="radiology_study" columnName="modality"
+			newDataType="varchar(255)" />
 		
 	</changeSet>
       
