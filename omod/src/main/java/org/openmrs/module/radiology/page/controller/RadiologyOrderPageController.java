@@ -7,18 +7,22 @@ package org.openmrs.module.radiology.page.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import org.openmrs.Concept;
 import org.openmrs.ConceptClass;
 import org.openmrs.ConceptName;
 import org.openmrs.Order;
+import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.radiology.PerformedProcedureStepStatus;
 import org.openmrs.module.radiology.RadiologyConstants;
 import org.openmrs.module.radiology.RadiologyModalityList;
+import org.openmrs.module.radiology.RadiologyOrder;
 import org.openmrs.module.radiology.RadiologyProperties;
 import org.openmrs.module.radiology.RadiologyService;
 import org.openmrs.module.radiology.RadiologyStudyList;
@@ -32,7 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class RadiologyOrderPageController {
 	
 	public void controller(PageModel model, @RequestParam(value = "returnUrl", required = false) String returnUrl,
-			@RequestParam(value = "patientId", required = false) String page) {
+			@RequestParam(value = "patientId", required = false) Patient patient) {
 		
 		String aa = Context.getAdministrationService()
 				.getGlobalProperty(RadiologyConstants.GP_RADIOLOGY_CONCEPT_CLASSES);
@@ -100,6 +104,15 @@ public class RadiologyOrderPageController {
 		model.addAttribute("performedStatuses", performedStatuses);
 		model.addAttribute("returnUrl", returnUrl);
 		
+		List<RadiologyOrder> radiologyOrders = getCompletedRadiologyOrdersByPatient(patient);
+		
+		System.out.println("length LLLLLLLLLLLLL " + radiologyOrders.size());
+		
+		model.put("radiologyOrders", radiologyOrders);
+		
+		model.addAttribute("patient", patient);
+		model.addAttribute("returnUrl", returnUrl);
+		
 	}
 	
 	public void getRadiologyOrderForm(FragmentModel model) {
@@ -108,6 +121,36 @@ public class RadiologyOrderPageController {
 		ModelAndView mav = new ModelAndView("radiology/radiologyOrderAll.page");
 		System.out.println("ORDER SAVEDCSDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
 		
+	}
+	
+	public List<RadiologyOrder> getCompletedRadiologyOrdersByPatient(Patient p) {
+		System.out.println("getLabOrdersByPatient");
+		Vector<RadiologyOrder> radiologyOrders = new Vector<RadiologyOrder>();
+		
+		List<Order> orders = Context.getOrderService()
+				.getAllOrdersByPatient(p);
+		
+		int testOrderTypeId = Context.getOrderService()
+				.getOrderTypeByName("Radiology Order")
+				.getOrderTypeId();
+		
+		RadiologyOrder radiologyOrder;
+		for (Order order : orders) {
+			// if (order.getOrderType().getOrderTypeId() == 3) { OrderType ot = new OrderType();
+			if (order.getOrderType()
+					.getOrderTypeId() == testOrderTypeId) {
+				
+				radiologyOrder = Context.getService(RadiologyService.class)
+						.getRadiologyOrderByOrderId(order.getOrderId());
+				
+				if (radiologyOrder.isCompleted()) {
+					radiologyOrders.add(radiologyOrder);
+					
+				}
+				
+			}
+		}
+		return radiologyOrders;
 	}
 	
 }
