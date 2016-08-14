@@ -9,7 +9,7 @@ ui.includeCss("uicommons", "datatables/dataTables_jui.css")
 <% ui.includeCss("radiology", "radiologyOrder.css") %>
     
 <% ui.includeCss("radiology", "performedStatusCompletedOrder.css") %>
-   
+   <% ui.includeJavascript("jquery.js") %>
 <script type="text/javascript">
     var breadcrumbs = [
     { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
@@ -18,7 +18,7 @@ ui.includeCss("uicommons", "datatables/dataTables_jui.css")
 
     ];
 var ret = "${returnUrl}";
-    var x = 1;
+    var xxx = 1;
 </script>
 
 <script>
@@ -56,9 +56,40 @@ var ret = "${returnUrl}";
     jq(this).addClass('selected').siblings().removeClass('selected');    
     var value=jq(this).find('td:first').html();
     alert(value); 
+    var array = value.split(',');
+     jq("#performedStatusCompletedObsSelect").show();
+     jq("#performedStatusCompletedOrder").hide();
+    namet = array[0];
+   
+   var name = namet.substr(7);
 
-    jq("#performedStatusCompletedObsSelect").show();
-    jq("#performedStatusCompletedOrder").hide();
+    <% if (radiologyOrders) { %>
+   
+    <% radiologyOrders.each { anOrder -> %>
+    
+    var sting = ${anOrder.orderId} ;
+
+    if(name == sting) {
+    alert("GGGGGGGGGGGGGGGGGGGGGGGGGGG");
+    alert("NNNNNNN "+ ${anOrder.orderId});
+    
+  jq('#completedOrderObs').append( '<tr><td> Study</td><td> Provider</td><td> Observation </td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+  jq('#completedOrderObs').append( '<tr><td> ${anOrder.study.studyname}</td><td> Provider</td><td> Observation </td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+
+
+    
+    
+     
+    
+    
+    }
+    
+    
+
+   <% } %>
+    <% } %> 
+ 
+    
     });
     
     });
@@ -70,8 +101,7 @@ var ret = "${returnUrl}";
 
     if(selectedValue == "COMPLETED") {
   
-    jq("#performedStatusCompletedOrder").show();
-  
+    jq("#performedStatusCompletedOrder").show(); 
     jq("#EmailForm").hide();
     jq("#performedStatusInProgressOrder").hide();
     jq("#AddRadiologyOrderForm").hide();
@@ -150,7 +180,7 @@ var ret = "${returnUrl}";
     </thead>
     <% radiologyOrders.each { anOrder -> %>
     <tr>
-        <td>orderid#${anOrder.orderId},
+        <td>orderid${anOrder.orderId},
             ${anOrder.patient}
             ${anOrder.study.studyname}</td>
         <td>${ anOrder.dateCreated } </td>
@@ -164,7 +194,12 @@ var ret = "${returnUrl}";
 
 
 <div id = "performedStatusCompletedObsSelect">
-  ${ ui.includeFragment("radiology", "performedStatusCompletedObs") }
+  <h1>COMPLETED RADIOLOGY ORDERS Observation</h1>
+<table id="completedOrderObs">
+   
+    
+
+</table>
 
 </div>
     

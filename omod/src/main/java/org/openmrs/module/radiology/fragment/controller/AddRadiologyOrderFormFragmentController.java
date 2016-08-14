@@ -82,7 +82,7 @@ public class AddRadiologyOrderFormFragmentController {
 		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		study.setModality(modalityname);
 		study.setStudyname(studyname);
-		study.setPerformedStatus(PerformedProcedureStepStatus.COMPLETED);
+		study.setPerformedStatus(PerformedProcedureStepStatus.IN_PROGRESS);
 		
 		radiologyOrder.setStudy(study);
 		

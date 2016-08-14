@@ -45,9 +45,7 @@ public class ModalitylistFragmentController {
 			@RequestParam(value = "studyconceptclass", required = false) Concept studyConcept,
 			@SpringBean("conceptService") ConceptService service, UiUtils ui) {
 		
-		System.out.println("Labset " + studyConcept);
 		ArrayList<Concept> studySetMembers = new ArrayList<Concept>();
-		System.out.println("outside for loop ");
 		
 		Concept con;
 		

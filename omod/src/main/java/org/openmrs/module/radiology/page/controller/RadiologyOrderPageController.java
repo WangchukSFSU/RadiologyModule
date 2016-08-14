@@ -18,6 +18,7 @@ import org.openmrs.ConceptClass;
 import org.openmrs.ConceptName;
 import org.openmrs.Order;
 import org.openmrs.Patient;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.radiology.PerformedProcedureStepStatus;
 import org.openmrs.module.radiology.RadiologyConstants;
@@ -26,10 +27,15 @@ import org.openmrs.module.radiology.RadiologyOrder;
 import org.openmrs.module.radiology.RadiologyProperties;
 import org.openmrs.module.radiology.RadiologyService;
 import org.openmrs.module.radiology.RadiologyStudyList;
+import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -115,12 +121,32 @@ public class RadiologyOrderPageController {
 		
 	}
 	
-	public void getRadiologyOrderForm(FragmentModel model) {
+	@RequestMapping(value = "/module/radiology/getRadiologyOrderFormNew", method = RequestMethod.GET)
+	public void getRadiologyOrderFormNew(@RequestParam(value = "id", required = false) String id) {
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD" + id);
+		
+	}
+	
+	public List<SimpleObject> getInProgressRadiologyOrder(@RequestParam(value = "valueList", required = false) String value,
+			@SpringBean("conceptService") ConceptService service, UiUtils ui) {
 		
 		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		ModelAndView mav = new ModelAndView("radiology/radiologyOrderAll.page");
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
+		
 		System.out.println("ORDER SAVEDCSDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
 		
+		Vector<RadiologyOrder> radiologyOrders = new Vector<RadiologyOrder>();
+		
+		radiologyOrders.add(Context.getService(RadiologyService.class)
+				.getRadiologyOrderByOrderId(2));
+		String[] properties = new String[2];
+		properties[0] = "conceptId";
+		properties[1] = "displayString";
+		
+		return SimpleObject.fromCollection(radiologyOrders, ui, properties);
 	}
 	
 	public List<RadiologyOrder> getCompletedRadiologyOrdersByPatient(Patient p) {
