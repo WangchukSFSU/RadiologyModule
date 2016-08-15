@@ -121,22 +121,8 @@ public class RadiologyOrderPageController {
 		
 	}
 	
-	@RequestMapping(value = "/module/radiology/getRadiologyOrderFormNew", method = RequestMethod.GET)
-	public void getRadiologyOrderFormNew(@RequestParam(value = "id", required = false) String id) {
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD" + id);
-		
-	}
-	
 	public List<SimpleObject> getInProgressRadiologyOrder(@RequestParam(value = "valueList", required = false) String value,
 			@SpringBean("conceptService") ConceptService service, UiUtils ui) {
-		
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFSADADASDASASD");
-		
-		System.out.println("ORDER SAVEDCSDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
 		
 		Vector<RadiologyOrder> radiologyOrders = new Vector<RadiologyOrder>();
 		

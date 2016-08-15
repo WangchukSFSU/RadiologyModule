@@ -56,32 +56,26 @@ var ret = "${returnUrl}";
     jq(this).addClass('selected').siblings().removeClass('selected');    
     var value=jq(this).find('td:first').html();
     alert(value); 
-    var array = value.split(',');
+    var splitvalue = value.split(',');
      jq("#performedStatusCompletedObsSelect").show();
      jq("#performedStatusCompletedOrder").hide();
-    namet = array[0];
+    ordervalue = splitvalue[0];
    
-   var name = namet.substr(7);
+   var orderId = ordervalue.substr(7);
 
     <% if (radiologyOrders) { %>
    
     <% radiologyOrders.each { anOrder -> %>
     
-    var sting = ${anOrder.orderId} ;
+    var radiologyorderId = ${anOrder.orderId} ;
 
-    if(name == sting) {
-    alert("GGGGGGGGGGGGGGGGGGGGGGGGGGG");
-    alert("NNNNNNN "+ ${anOrder.orderId});
-    
-  jq('#completedOrderObs').append( '<tr><td> Study</td><td> Provider</td><td> Observation </td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
-  jq('#completedOrderObs').append( '<tr><td> ${anOrder.study.studyname}</td><td> Provider</td><td> Observation </td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+    if(orderId == radiologyorderId) {
+   
+    jq('#completedOrderObs').empty();
+  jq('#completedOrderObs').append( '<tr><td> Observation </td><td> Study</td><td> Provider</td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+  jq('#completedOrderObs').append( '<tr><td> Observation </td><td> ${anOrder.study.studyname}</td><td> Provider</td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
 
 
-    
-    
-     
-    
-    
     }
     
     
@@ -194,7 +188,9 @@ var ret = "${returnUrl}";
 
 
 <div id = "performedStatusCompletedObsSelect">
+    
   <h1>COMPLETED RADIOLOGY ORDERS Observation</h1>
+  
 <table id="completedOrderObs">
    
     
