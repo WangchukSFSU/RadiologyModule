@@ -17,6 +17,7 @@ import org.openmrs.module.radiology.PerformedProcedureStepStatus;
 
 import org.openmrs.module.radiology.RadiologyOrder;
 import org.openmrs.module.radiology.RadiologyService;
+import org.openmrs.module.radiology.ScheduledProcedureStepStatus;
 
 import org.openmrs.module.radiology.Study;
 import org.openmrs.notification.MessageException;
@@ -86,7 +87,8 @@ public class AddRadiologyOrderFormFragmentController {
 		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		study.setModality(modalityname);
 		study.setStudyname(studyname);
-		study.setPerformedStatus(PerformedProcedureStepStatus.COMPLETED);
+		study.setPerformedStatus(PerformedProcedureStepStatus.IN_PROGRESS);
+		study.setScheduledStatus(ScheduledProcedureStepStatus.SCHEDULED);
 		
 		radiologyOrder.setStudy(study);
 		

@@ -29,7 +29,7 @@ var  message = jq("#message").val();
     </script>  
 
 <center>
-        <h1>Sending e-mail with Spring MVC</h1>
+        <h1>CONTACT RADIOLOGIST</h1>
         <form method = "POST" >
             <table border="0" width="80%">
                 <tr>

@@ -33,7 +33,7 @@ var ret = "${returnUrl}";
     jq("#performedStatusInProgressOrder").hide();
     jq("#performedStatusCompletedObsSelect").hide();
     jq("#HTMLFORM").hide();
-    
+    jq("#ContactRadiologist").hide();
     jq("#performedStatusCompletedOrder").show();
     
 
@@ -77,8 +77,8 @@ var ret = "${returnUrl}";
     if(orderId == radiologyorderId) {
    
     jq('#completedOrderObs').empty();
-  jq('#completedOrderObs').append( '<tr><td> Observation</td><td> Study</td><td> Provider</td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
-  jq('#completedOrderObs').append( '<tr><td><a onclick="runMyFunction();"> Obs</a> </td><td> ${anOrder.study.studyname}</td><td> Provider</td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td><a onclick="contactRadiologist();"> ContactRadiologist</td></a></tr>' );
+  jq('#completedOrderObs').append( '<tr><td> Observation</td><td> Provider</td><td> Instructions </td><td> Diagnosis</td><td> Study</td><td> ViewStudy</td><td> ContactRadiologist</td></tr>' );
+  jq('#completedOrderObs').append( '<tr><td><a onclick="runMyFunction();"> Obs</a> </td><td> ${anOrder.orderer.name}</td><td> ${anOrder.instructions} </td><td> ${anOrder.orderdiagnosis}</td><td> ${anOrder.study.studyname}</td><td> <a>ViewStudy</a></td><td><a onclick="contactRadiologist();"> ContactRadiologist</td></a></tr>' );
 
 
     }
@@ -172,7 +172,7 @@ function contactRadiologist() {
 
 
     <div id="EmailForm">
-        ${ ui.includeFragment("radiology", "emailform",[ returnUrl: '${returnUrl}',
+        ${ ui.includeFragment("radiology", "contactPatient",[ returnUrl: '${returnUrl}',
         patient: '${patient}'
         ]) }
     </div>
@@ -196,7 +196,7 @@ function contactRadiologist() {
             ${anOrder.patient}
             ${anOrder.study.studyname}</td>
         <td>${ anOrder.dateCreated } </td>
-        <td>${anOrder.instructions}</td>
+        <td></td>
 
     </tr>
     <% } %>  
@@ -207,7 +207,7 @@ function contactRadiologist() {
 
 <div id = "performedStatusCompletedObsSelect">
     
-  <h1>COMPLETED RADIOLOGY ORDERS Observation</h1>
+  <h1>RADIOLOGY ORDER OBSERVATION</h1>
   
 <table id="completedOrderObs">
    

@@ -1,7 +1,7 @@
   
-        <h1>Report Obs</h1>
+    
   
-  <h1>COMPLETED RADIOLOGY ORDERS Observation</h1>
+  <h1>RADIOLOGY ORDER REPORT</h1>
 <table id="table">
     
     <% getObs.each { observation -> %>

@@ -19,3 +19,26 @@ and open the template in the editor.
  
     display: inline;
 }
+
+#studybtn {
+    
+    margin-top: 5px;
+}
+
+#diagnosisnamebtn {
+    margin-top: 5px;
+}
+#orderInstruction {
+    margin-top: 5px;
+}
+#priority {
+    margin-top: 5px;
+}
+
+#submitForm {
+    margin-top: 15px;
+    margin-left: 53px;
+}
+#studyname {
+    
+}

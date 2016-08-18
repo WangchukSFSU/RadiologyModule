@@ -7,6 +7,8 @@
     jq = jQuery;
     jq(document).ready(function() {
 
+   
+    
        jq(document).on('click', '.save-report', function() {      
        saverReport = [];
    jq('#unorderedlist li input:checked').each(function() {
@@ -89,22 +91,13 @@
     jq("#modality-list").empty();
     jq("#modality-list").html("Studies"); 
 
-    jq("#modality-concept-message").empty();
-    jq("#modality-concept-message").text("Please Create Reports not appearing in the list then refresh");
-
-    jq("#delete-modality").empty();
-    jq("#delete-modality").val("Select Study to View Report"); 
-    jq("#delete-modality").removeClass('select-modality').addClass('select-report');
+   
+jq(".select-modality").remove();
 
 
-    jq("#view-study").empty();
-    jq("#view-study").val("Delete Selected Reports"); 
-    jq("#view-study").removeClass('delete-study').addClass('delete-report');
 
 
-    jq("#Save").empty();
-    jq("#Save").val("Save Report"); 
-    jq("#Save").removeClass('save-study').addClass('save-report');
+
 
     jq("#modality-label-list").empty();
 jq('#unorderedlist li :checked').closest('li').appendTo('#modality-label-list');
@@ -175,7 +168,7 @@ jq('#unorderedlist li :checked').closest('li').appendTo('#modality-label-list');
     if(jq('#Save').data('clicked')) {
     
     jq("#modality-concept-message").empty();
-    jq("#modality-concept-message").text("Please add studies appearing in list to concept dictionary then refresh");
+    jq("#modality-concept-message").text("Please add studies not appearing in list to concept dictionary then refresh");
 
 
     jq('input:checkbox[name=modlist]').each(function() 
@@ -206,7 +199,10 @@ jq('#unorderedlist li :checked').closest('li').appendTo('#modality-label-list');
     }
     else
     {
-    alert("Please Save the data");
+    alert("Please Click Save Modality");
+    
+  
+         
     }
 
 
@@ -345,11 +341,12 @@ jq("#header ul").append(jq("<li>").html('<input type="checkbox"  value="' + conI
         <div class="modality-list-btn">
 
             <input type="button" name="delete-modality" class="delete-modality" id="delete-modality" value="Delete Selected Modality">
-            <input type="submit" id="Save" class="Save" value="Save">
+            <input type="submit" id="Save" class="Save" value="Save Modality">
             <input type="button" name="view-study" class="view-study" id="view-study" value="View Studies">
         </div>
     </div>
 
 
+      
 
 

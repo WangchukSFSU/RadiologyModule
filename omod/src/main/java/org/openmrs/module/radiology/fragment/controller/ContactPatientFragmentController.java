@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author youdon
  */
-public class EmailformFragmentController {
+public class ContactPatientFragmentController {
 	
 	public void controller(FragmentModel model, @RequestParam(value = "returnUrl", required = false) String returnUrl,
 			@RequestParam(value = "patientId", required = false) Patient patient,

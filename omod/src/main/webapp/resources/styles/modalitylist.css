@@ -12,19 +12,40 @@
 }
 
 #modality-list {
-background-color: gainsboro;
+
+
 float: left;
-font-size: 20px;
-padding: 8px;
+
+
+
+font: bold 26px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
 
 }
 
 #modality-concept-message {
-    background-color: gainsboro;
-    width: 50%;
-    margin-left: 153px;
-    text-align: center;
-    padding: 8px;
+   
+     margin-top: 7px;
+    margin-left: 26px;
+   
+ 
+    
+    font: bold 17px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
   
 
 }
@@ -43,9 +64,11 @@ label {
 }
 
 .modality-list-btn {
-    margin-top: 54px;
+    margin-top: 84px;
     padding-bottom: 13px;
+   
 }
+
 
 #select-modality {
     width: 240px;

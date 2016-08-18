@@ -15,7 +15,7 @@
             ${anOrder.patient}
             ${anOrder.study.studyname}</td>
         <td>${ anOrder.dateCreated } </td>
-        <td>${anOrder.instructions}</td>
+        <td>${anOrder.study.scheduledStatus}</td>
 
     </tr>
     <% } %>  

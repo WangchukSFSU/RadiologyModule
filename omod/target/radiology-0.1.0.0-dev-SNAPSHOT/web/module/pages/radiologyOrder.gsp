@@ -33,7 +33,7 @@ var ret = "${returnUrl}";
     jq("#performedStatusInProgressOrder").hide();
     jq("#performedStatusCompletedObsSelect").hide();
     jq("#HTMLFORM").hide();
-    
+    jq("#ContactRadiologist").hide();
     jq("#performedStatusCompletedOrder").show();
     
 
@@ -172,7 +172,7 @@ function contactRadiologist() {
 
 
     <div id="EmailForm">
-        ${ ui.includeFragment("radiology", "emailform",[ returnUrl: '${returnUrl}',
+        ${ ui.includeFragment("radiology", "contactPatient",[ returnUrl: '${returnUrl}',
         patient: '${patient}'
         ]) }
     </div>
@@ -196,7 +196,7 @@ function contactRadiologist() {
             ${anOrder.patient}
             ${anOrder.study.studyname}</td>
         <td>${ anOrder.dateCreated } </td>
-        <td>${anOrder.instructions}</td>
+        <td></td>
 
     </tr>
     <% } %>  
