@@ -24,10 +24,15 @@ var ret = "${returnUrl}";
 <script>
     jq = jQuery;
     jq(document).ready(function() { 
+    
+   
+    
+    
     jq("#AddRadiologyOrderForm").hide();
     jq("#EmailForm").hide();
     jq("#performedStatusInProgressOrder").hide();
     jq("#performedStatusCompletedObsSelect").hide();
+    jq("#HTMLFORM").hide();
     
     jq("#performedStatusCompletedOrder").show();
     
@@ -72,8 +77,8 @@ var ret = "${returnUrl}";
     if(orderId == radiologyorderId) {
    
     jq('#completedOrderObs').empty();
-  jq('#completedOrderObs').append( '<tr><td> Observation </td><td> Study</td><td> Provider</td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
-  jq('#completedOrderObs').append( '<tr><td> Observation </td><td> ${anOrder.study.studyname}</td><td> Provider</td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+  jq('#completedOrderObs').append( '<tr><td> Observation</td><td> Study</td><td> Provider</td><td> Instructions </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td> ContactRadiologist</td></tr>' );
+  jq('#completedOrderObs').append( '<tr><td><a onclick="runMyFunction();"> Obs</a> </td><td> ${anOrder.study.studyname}</td><td> Provider</td><td> ${anOrder.instructions} </td><td> Diagnosis</td><td> Treatment</td><td> StudyResult</td><td><a onclick="contactRadiologist();"> ContactRadiologist</td></a></tr>' );
 
 
     }
@@ -89,7 +94,20 @@ var ret = "${returnUrl}";
     });
 
 
+function runMyFunction() {
+  alert("run my function");
+  jq("#HTMLFORM").show(); 
+   jq("#ContactRadiologist").hide(); 
+ 
+ 
+}
 
+function contactRadiologist() {
+  alert("run my contactRadiologist");
+  jq("#HTMLFORM").hide(); 
+  jq("#ContactRadiologist").show();
+ 
+}
 
     function selectFunction(selectedValue) {
 
@@ -202,7 +220,17 @@ var ret = "${returnUrl}";
     
     
     
+      <div id="HTMLFORM" width="50%">
+        ${ ui.includeFragment("radiology", "reportObs",[ returnUrl: '${returnUrl}',
+        patient: '${patient}'
+        ]) }
+    </div>
     
+       <div id="ContactRadiologist" width="50%">
+        ${ ui.includeFragment("radiology", "contactRadiologist",[ returnUrl: '${returnUrl}',
+        patient: '${patient}'
+        ]) }
+    </div>
     
     
     

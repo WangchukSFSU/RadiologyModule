@@ -14,7 +14,7 @@ var  message = jq("#message").val();
 
    jq.ajax({
     type: "POST",
-    url: "${ ui.actionLink('sendEmailToPatient') }",
+    url: "${ ui.actionLink('sendEmailToRadiologist') }",
     data : { 'recipient': recipient, 'subject': subject, 'message': message},
     cache: false,
     success: function(data){

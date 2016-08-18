@@ -7,6 +7,7 @@ package org.openmrs.module.radiology.fragment.controller;
 
 import java.util.Date;
 import org.openmrs.Order;
+import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.User;
@@ -77,12 +78,15 @@ public class AddRadiologyOrderFormFragmentController {
 		radiologyOrder.setUrgency(Order.Urgency.valueOf(priorityname));
 		radiologyOrder.setOrderdiagnosis(diagnosisname);
 		
+		Obs oo = new Obs();
+		oo.setOrder(radiologyOrder);
+		
 		Study study = new Study();
 		
 		RadiologyService radiologyservice = Context.getService(RadiologyService.class);
 		study.setModality(modalityname);
 		study.setStudyname(studyname);
-		study.setPerformedStatus(PerformedProcedureStepStatus.IN_PROGRESS);
+		study.setPerformedStatus(PerformedProcedureStepStatus.COMPLETED);
 		
 		radiologyOrder.setStudy(study);
 		
